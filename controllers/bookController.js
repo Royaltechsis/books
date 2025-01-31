@@ -1,3 +1,5 @@
+const Book = require('../models/Book'); // Adjust the path as necessary
+
 // In controllers/bookController.js
 exports.getAllBooks = async (req, res) => {
     try {
@@ -14,6 +16,7 @@ exports.getAllBooks = async (req, res) => {
       if (!book) return res.status(404).json({ message: 'Book not found' });
       res.json(book);
     } catch (err) {
+      console.error('Error fetching book by ID:', err);
       res.status(500).json({ message: 'Server error' });
     }
   };
@@ -25,6 +28,7 @@ exports.getAllBooks = async (req, res) => {
       await book.save();
       res.status(201).json(book);
     } catch (err) {
+      console.error('Error creating book:', err);
       res.status(500).json({ message: 'Server error' });
     }
   };
