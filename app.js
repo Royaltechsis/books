@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 app.use(express.json());
 
+require('dotenv').config();
+
 app.get('/', (req, res) => {
     res.send('Hello World');    
 });
@@ -12,9 +14,9 @@ app.listen(3000, () => {
 
 // In app.js
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/book-api')
-  .then(() => console.log('Connected to MongoDB'))
-  .catch(err => console.error('Connection failed:', err));
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => console.log('Connected to MongoDB Atlas'))
+  .catch(err => console.error('Atlas connection failed:', err));
 
   // In app.js
 app.use((err, req, res, next) => {
