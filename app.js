@@ -19,6 +19,8 @@ mongoose.connect(process.env.MONGODB_URI)
 // Define the /books route
 app.post('/books', bookController.createBook);
 app.get('/books/:id', bookController.getBookById);
+app.get('/books', bookController.getAllBooks); 
+app.delete('/books/:id', bookController.deleteBook);
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
